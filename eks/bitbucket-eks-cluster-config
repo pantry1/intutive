@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Config
+clusters:
+  - name: arn:aws:eks:us-east-1:998516096174:cluster/bitbucket-eks-cluster
+    cluster:
+      server: https://D18429658504B979FA2596C115896693.gr7.us-east-1.eks.amazonaws.com
+      certificate-authority-data: >-
+        LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EWXhPVEUyTkRjMU5Gb1hEVE16TURZeE5qRTJORGMxTkZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTVdxCmxNVHU1b0Mra1BVKzB3U0RSa3pPVk96clpJWjZybGUwSzk2V0RVZnpDVlVSYkpKWEVPUTYvd3VFM0VvZmtCcm8KRjlJeDhmU2Z1SU1GT1ZVZ09YUG5MRTBDcE1NUW9yRkljTmVnZFRPTTVUZno1NGlsaEtRT20vMHlqR0lxdWExMgpDVW9UMHRHL2tubXMwY3BydGlLMFJNbkpBY3JidVErUEJPQ2dGL0tia09EL0JxYnd0MWZaZUtsMXB5NXRjbDVaClZwVWVOVGJ1ZlJOb0RHRlNRdFBvWDAyS1lqeE1jbGczMlZucFRPY1RzQStDUHpSdU80aTAwVU9tcW5wVlUyc2sKMmNaR0hYUDk4anMyZ0FTb2ZocWhnK3NaRHcwY1ZlcE9jY3ovMzJqaG5IL2hrMklHcW9IeGQ4N2pMUDEyTnUyMwpQTTRaN0drVExNdU5wc1VNVU5rQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZBRHMyb3BzNk1PZXZvQTVZbnVhcFBYZmdNUkNNQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBQ2pEZzh3QmlpZmxUMTRYRVA3WApPOVlhSUVYYUVOem5RZEtmZ21JYlhobStjVGhTVFBEb0NYeVFqU2gzbGw0UUY5bVd2MHJzT1ZRWXBVby9JclRZClY3dy9VM0NaNjZsQ0VHbmQydmEvYnNxYm1SdE5iRm1majRRU2E3SFNDSEtVTTVhblZ2U3dxZUF5WDB2bXNwZkgKMitqMFVWbTZQc2hyZ2dDMDRTTHVWUEhGS01rRTJRNkh0Znl3YktQWXlMVTRGQ21DTWlmL3BKUUowSkVsZzV2Rwo5OUNRQ3pIQnpzb0ZBNFNKRUNvNWF3ODlKZVNDMHYxdHkyUGc1Y1JmZ1k4ZDY0Mm5rQnA2L0RmdVRqVEZ5dnVNCmFvUWVnWEx1V3RCYlIyQzlkK3hOSXdENldnSHlrVXlzUjZqd0lPZTgva0s4dlF5ZTlJelE0M2hzaG5pbnd5anEKRGRzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+      insecure-skip-tls-verify: false
+users:
+  - name: arn:aws:eks:us-east-1:998516096174:cluster/bitbucket-eks-cluster
+    user:
+      exec:
+        apiVersion: client.authentication.k8s.io/v1beta1
+        args:
+          - '--region'
+          - us-east-1
+          - eks
+          - get-token
+          - '--cluster-name'
+          - bitbucket-eks-cluster
+          - '--output'
+          - json
+        command: aws
+        env:
+          - name: AWS_PROFILE
+            value: svc-terraform
+contexts: []
+preferences: {}
+current-context: arn:aws:eks:us-east-1:998516096174:cluster/bitbucket-eks-cluster
