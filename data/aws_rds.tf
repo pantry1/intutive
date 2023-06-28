@@ -34,7 +34,8 @@ resource "aws_db_subnet_group" "default" {
 
 
 resource "aws_db_instance" "default" {
-  allocated_storage   = 10
+  allocated_storage   = var.db_size
+  identifier = "bitbucket-rds-${var.cluster_name}"
   engine              = "postgres"
   engine_version      = "14"
   instance_class      = var.db_instance_type

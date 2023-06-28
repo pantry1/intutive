@@ -5,11 +5,11 @@ variable "profile" {
 
 variable "region" {
   type    = string
-  default = "us-east-1"
+  default = "ap-south-1"
 }
 
 variable "vpc_id" {
-  default = "vpc-062b787ae2d5c4740"
+  default = "vpc-0f851beb2ba287c51"
 }
 
 variable "nfs_instance_type" {
@@ -21,12 +21,11 @@ variable "nfs_server_size" {
 }
 
 variable "public_subnet_id" {
-  #type = list
-  default = "subnet-0a30aab2c4b901a67"
+  default = "subnet-03b362bbc29eedb1d"
 }
 
 variable "node_security_group_id" {
-  default = "sg-0cb928db68b1c893a"
+  default = "sg-02e8b82aa8e5dbe10"
 }
 
 variable "db_username" {
@@ -43,5 +42,9 @@ variable "db_instance_type" {
 
 variable "cluster_name" {
   type    = string
-  default = "bitbucket-eks-cluster"
+  default = "bitbucket-cluster"
+}
+
+variable "db_size" {
+  default = 10
 }
