@@ -13,3 +13,7 @@ output "rds_endpoint" {
 output "rds_engine" {
   value = aws_db_instance.default.engine
 }
+
+output "secret_manager_arn" {
+  value = aws_secretsmanager_secret.store.arn
+}

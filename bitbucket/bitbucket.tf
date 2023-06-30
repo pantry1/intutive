@@ -98,11 +98,11 @@ resource "helm_release" "bitbucket-data-center" {
     value = true
   }
   set {
-    name = "bitbucket.service.type"
+    name  = "bitbucket.service.type"
     value = "NodePort"
   }
   set {
-    name = "ingress.path"
+    name  = "ingress.path"
     value = "/"
   }
   set {
@@ -120,7 +120,7 @@ resource "helm_release" "bitbucket-data-center" {
   }
   set {
     name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme"
-    value = "internet-facing"
+    value = var.elb_type
     type  = "string"
   }
   set {
@@ -134,7 +134,11 @@ resource "helm_release" "bitbucket-data-center" {
     type  = "string"
   }
   set {
-    name = "secretStoreName"
+    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/subnets"
+    value = var.private_subnets    
+  }
+  set {
+    name  = "secretStoreName"
     value = var.secretStoreName
   }
 }

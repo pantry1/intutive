@@ -28,14 +28,6 @@ variable "node_security_group_id" {
   default = "sg-02e8b82aa8e5dbe10"
 }
 
-variable "db_username" {
-  default = "foo"
-}
-
-variable "db_password" {
-  default = "foobarbaz"
-}
-
 variable "db_instance_type" {
   default = "db.t3.micro"
 }
@@ -47,4 +39,25 @@ variable "cluster_name" {
 
 variable "db_size" {
   default = 10
+}
+
+######  USERNAME AND OTHER DETAILS
+variable "db_username" {
+  default = "foo"
+}
+
+variable "es_username" {
+  default = "elastic"
+}
+
+variable "bitbucket_username" {
+  default = "admin"
+}
+
+variable "bitbucket_displayNamen" {
+  default = "Admin"
+}
+
+variable "bitbucket_emailAddress" {
+  default = "test@gmail.com"
 }

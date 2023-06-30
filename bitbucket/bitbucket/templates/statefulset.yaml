@@ -184,8 +184,10 @@ spec:
                   key: additional_jvm_args
                   name: {{ include "common.names.fullname" . }}-jvm-config
             - name: APPLICATION_MODE
-              value: {{ .Values.bitbucket.applicationMode | default "default" | quote }}
+              value: {{ .Values.bitbucket.applicationMode | default "default" | quote }}            
             {{- include "bitbucket.additionalEnvironmentVariables" . | nindent 12 }}
+            - name: HAZELCAST_NODE_AUTHENTICATION_ENABLED
+              value: "false"
           lifecycle:
             preStop:
               exec:
