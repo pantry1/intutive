@@ -1,0 +1,32 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1EY3dNakV4TWpnME1Gb1hEVE16TURZeU9URXhNamcwTUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTjluCmV4RnZJNHBrWjVkNVRtc01nYUE0Nld2V0ZxM21IWUptdzU4MXBQcTJ1ejUyeUhzc3RiUmZGUWx2eXZHV3VJcEcKVUd4QWRyMldmbWJrTnZKd2RjZWpZdkt2WlZXbTB6V3JRUjlpNE9ESzB1NThmdHYrMWdRdDFEWGpuN3VIalZBNQpNL2d0a3R1dnVvNmJYYU1ENU1EWXNrdXA1aUg0d0IwUC9zUEtyb2M0UnJnYUJkcTRrZkxhQ3pMa2g1R3dqa01mCmNDWnFuM3FVT1ZDOVBtcXVsdHpNL3J5NkpQTi9ZYnN2dmUwTHgwRzdtSjk0aGRWRmxUd2NWU0t1Q1JQWHVHS0sKaFZ5RTRiVm9XenNMM1lyMExJa0psSldDR3VBa3ZzSStkaTc2VWN6ek5QVml3UmwvdndpdzlkQWk5NnZTSUJuagpWV2xCUzJSaVVTT2lWcG5jYjgwQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZNQm41bzFCS21CUm1rWTdrc1M1V1pWRCszdnlNQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRG5WZFB1ZCtuOC8wN1A4RFRxTgpha2l5T2hiUU1WZG9mNFZvYnVuTjN6dERNcmpqbzduV3k0NGI3VlZjZE5yNkdLdTVyMHFVYmhGU0poSGdnQkRKCnhzdDFmd3k2cmxtTzlqWFJxbktvUTBIOHUzWG8zVStrdkJwTk8vc1JjWUtEWjgwbXdxTjJwS2RFdlVYbVJIOFIKN3dwbXZMeC9sUWJPVXpvU285MDI1bmNSK1FjUWU1ckZMVTdnQW5KSUwrQXY4bThOY2lnamR1bDFIcmJDQk9HTgpDYjgwVnd3bGtRNGVJT2NTNzkxVDcxRTk4RjVMTTR0dS8zaGxvM0ZLT1UxSGZNQm02MGpVVXlpRXYvelkzSzkxCnNsdlp6ZVRIenpqOHd6Si9vNTVGZGZMYjZrR1ZmRnNCQXo4MEI0WXdPN1E2a1VRUDcwSTFHWGhOK0xEamx0cTQKbVZzPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://188A454F3AAA1E51CDD3FF16331C5E3D.gr7.ap-south-1.eks.amazonaws.com
+  name: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+contexts:
+- context:
+    cluster: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+    user: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+  name: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+current-context: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:ap-south-1:998516096174:cluster/bitbucket-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - ap-south-1
+      - eks
+      - get-token
+      - --cluster-name
+      - bitbucket-cluster
+      - --output
+      - json
+      command: aws
+      env:
+      - name: AWS_PROFILE
+        value: svc-terraform
