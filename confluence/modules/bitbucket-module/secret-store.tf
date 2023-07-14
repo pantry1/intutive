@@ -1,6 +1,6 @@
 resource "time_sleep" "wait_45_seconds" {
   create_duration = "45s"
-  depends_on = [var.eks_endpoint]
+  depends_on = [var.chart_status]
 }
 
 resource "kubectl_manifest" "secret-store" {
