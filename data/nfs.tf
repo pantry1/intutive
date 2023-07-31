@@ -70,6 +70,7 @@ resource "aws_instance" "nfs-server" {
   root_block_device {
     volume_type = "gp2"
     volume_size = var.nfs_server_size
+    encrypted = true
   }
 
   lifecycle {

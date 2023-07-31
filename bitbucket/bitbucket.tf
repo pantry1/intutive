@@ -31,12 +31,12 @@ resource "helm_release" "bitbucket-data-center" {
   }
   set {
     name  = "volumes.localHome.persistentVolume.storageClassName"
-    value = "gp2"
+    value = "gp2-encrypted"
     type  = "string"
   }
   set {
     name  = "volumes.localHome.persistentVolumeClaim.storageClassName"
-    value = "gp2"
+    value = "gp2-encrypted"
     type  = "string"
   }
   set {

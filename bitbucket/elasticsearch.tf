@@ -43,7 +43,7 @@ resource "helm_release" "eck-elasticsearch" {
   }
   set {
     name  = "storageClassName"
-    value = "gp2"
+    value = "gp2-encrypted"
   }
 
 }
