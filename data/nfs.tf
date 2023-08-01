@@ -62,7 +62,10 @@ resource "aws_instance" "nfs-server" {
   availability_zone           = data.aws_availability_zones.available.names[0]
   vpc_security_group_ids      = [aws_security_group.nfs-sg.id]
   key_name                    = aws_key_pair.pem.key_name
-  associate_public_ip_address = true
+  associate_public_ip_address = false
+  metadata_options {
+    http_tokens = required
+  }
   tags = {
     name = "nfs-server"
   }
