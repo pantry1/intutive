@@ -24,10 +24,6 @@ terraform {
       version = "0.9.1"
     }
 
-    # template = {
-    #   source = "hashicorp/template"
-    #   version = "2.2.0"
-    # }
   }
   required_version = "~> 1.4.6"
 }
