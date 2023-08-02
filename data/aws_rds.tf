@@ -13,10 +13,10 @@ resource "aws_security_group" "rds-sg" {
   name   = "sg1-rds-bitbucket-${var.cluster_name}"
   vpc_id = var.vpc_id
   ingress {
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
-    cidr_blocks      = ["10.0.0.0/8"]    
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   egress {
@@ -34,9 +34,9 @@ resource "aws_db_subnet_group" "default" {
 
 
 resource "aws_db_instance" "default" {
-  depends_on = [ random_string.db_password ]
+  depends_on          = [random_string.db_password]
   allocated_storage   = var.db_size
-  identifier = "bitbucket-rds-${var.cluster_name}"
+  identifier          = "atlassian-rds-${var.cluster_name}"
   engine              = "postgres"
   engine_version      = "14"
   instance_class      = var.db_instance_type
@@ -48,5 +48,9 @@ resource "aws_db_instance" "default" {
   final_snapshot_identifier = "bitbucket-db"
   db_subnet_group_name      = aws_db_subnet_group.default.id
   vpc_security_group_ids    = [aws_security_group.rds-sg.id]
+  tags = {
+    cluster_name        = var.cluster_name
+    terraform_workspace = terraform.workspace
+  }
 }
 
