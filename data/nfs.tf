@@ -24,10 +24,10 @@ resource "aws_security_group" "nfs-sg" {
   }
 
   ingress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = -1
-    cidr_blocks      = ["10.0.0.0/8"]   
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   egress {
@@ -64,16 +64,19 @@ resource "aws_instance" "nfs-server" {
   key_name                    = aws_key_pair.pem.key_name
   associate_public_ip_address = false
   metadata_options {
-    http_tokens = required
+    http_tokens = "required"
   }
   tags = {
-    name = "nfs-server"
+    name                = "nfs-server"
+    Name                = "nfs-server"
+    cluster_name        = var.cluster_name
+    terraform_workspace = terraform.workspace
   }
 
   root_block_device {
     volume_type = "gp2"
     volume_size = var.nfs_server_size
-    encrypted = true
+    encrypted   = true
   }
 
   lifecycle {
