@@ -16,8 +16,8 @@ resource "time_sleep" "wait_30_seconds" {
 resource "helm_release" "eck-elasticsearch" {
   depends_on = [time_sleep.wait_30_seconds]
   name       = "eck-elasticsearch"
-  chart     = "${path.module}/eck-elasticsearch"
-  namespace = "elastic"
+  chart      = "${path.module}/eck-elasticsearch"
+  namespace  = "elastic"
 
 
   set {
@@ -42,7 +42,7 @@ resource "helm_release" "eck-elasticsearch" {
   }
   set {
     name  = "storageClassName"
-    value = "gp2"
+    value = "normal"
   }
 
 }
