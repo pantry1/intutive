@@ -39,7 +39,7 @@ module "bitbucket" {
 }
 
 
-module "confluence" {
+/*module "confluence" {
   source                 = "./modules/confluence-module"
   cluster_name           = module.eks_cluster.cluster_name
   region                 = var.region
@@ -53,3 +53,4 @@ module "confluence" {
   secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
   secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
 }
+*/

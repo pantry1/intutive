@@ -45,7 +45,7 @@ resource "aws_db_instance" "default" {
   db_name             = "bitbucket"
   skip_final_snapshot = true
   #storage_type = "gp3"
-  final_snapshot_identifier = "bitbucket-db"
+  final_snapshot_identifier = "atlassian-db"
   db_subnet_group_name      = aws_db_subnet_group.default.id
   vpc_security_group_ids    = [aws_security_group.rds-sg.id]
   tags = {
