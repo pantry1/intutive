@@ -87,6 +87,7 @@ resource "aws_instance" "nfs-server" {
   }
   user_data = <<-EOF
   #!/bin/bash
+  sudo hostnamectl set-hostname nfs-server
   sudo apt-get update -y
   sudo apt-get install nfs-kernel-server -y
   mkdir /nfsshare
