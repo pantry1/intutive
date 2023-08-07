@@ -42,6 +42,8 @@ resource "aws_db_instance" "default" {
   instance_class      = var.db_instance_type
   username            = var.db_username
   password            = random_string.db_password.result
+  multi_az            = true
+  storage_encrypted   = true
   db_name             = "bitbucket"
   skip_final_snapshot = true
   #storage_type = "gp3"
