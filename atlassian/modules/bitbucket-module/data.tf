@@ -15,7 +15,7 @@ data "aws_instance" "nfs_server" {
     values = [var.cluster_name]
   }
   filter {
-    name = "instance-state-name"
+    name   = "instance-state-name"
     values = ["running"]
   }
 
