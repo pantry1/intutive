@@ -5,3 +5,4 @@ terraform.tfvars
 **/.terraform/**
 atlassian/.terraform/
 pem/*
+terraform.tfstate.d
