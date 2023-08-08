@@ -1,9 +1,9 @@
 variable "cluster_name" {
-  type    = string
+  type = string
 }
 
 variable "region" {
-  type    = string
+  type = string
 }
 
 variable "rds_driver" {
@@ -42,6 +42,9 @@ variable "chart_status" {
 variable "secret_store_name" {
   type = string
 }
-variable "secret_store_arn" {
 
+variable "secret_store_arn" {
+}
+
+variable "certificateARN" {
 }
