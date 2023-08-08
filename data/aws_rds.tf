@@ -34,19 +34,21 @@ resource "aws_db_subnet_group" "default" {
 
 
 resource "aws_db_instance" "default" {
-  depends_on          = [random_string.db_password]
-  allocated_storage   = var.db_size
-  identifier          = "atlassian-rds-${var.cluster_name}"
-  engine              = "postgres"
-  engine_version      = "14"
-  instance_class      = var.db_instance_type
-  username            = var.db_username
-  password            = random_string.db_password.result
-  multi_az            = true
-  storage_encrypted   = true
-  db_name             = "bitbucket"
-  skip_final_snapshot = true
-  #storage_type = "gp3"
+  depends_on                = [random_string.db_password]
+  allocated_storage         = var.db_size
+  identifier                = "atlassian-rds-${var.cluster_name}"
+  engine                    = "postgres"
+  engine_version            = "14"
+  instance_class            = var.db_instance_type
+  username                  = var.db_username
+  password                  = random_string.db_password.result
+  backup_retention_period   = 7
+  backup_window             = "03:00-04:00"
+  multi_az                  = true
+  storage_encrypted         = true
+  db_name                   = "bitbucket"
+  skip_final_snapshot       = true
+  copy_tags_to_snapshot     = true
   final_snapshot_identifier = "atlassian-db"
   db_subnet_group_name      = aws_db_subnet_group.default.id
   vpc_security_group_ids    = [aws_security_group.rds-sg.id]
