@@ -49,3 +49,6 @@ variable "region" {
 variable "bitbucket_pods_count" {
   default = 1
 }
+variable "certificateARN" {
+  default = null
+}
