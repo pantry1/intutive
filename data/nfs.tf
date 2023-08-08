@@ -56,7 +56,7 @@ resource "local_file" "local_key_pair" {
 
 resource "aws_instance" "nfs-server" {
 
-  subnet_id                   = element(data.aws_subnets.private_subnets.ids,0)
+  subnet_id                   = element(data.aws_subnets.private_subnets.ids, 0)
   ami                         = data.aws_ami.debian11.image_id
   instance_type               = var.nfs_instance_type
   availability_zone           = data.aws_availability_zones.available.names[0]
@@ -99,7 +99,7 @@ resource "aws_instance" "nfs-server" {
   sudo hostnamectl set-hostname nfs-server
   PRIVATE_IP=$(ip -4 addr show ens5 | grep -oP 'inet \K[\d.]+')
   echo $PRIVATE_IP >> /tmp/user_data_script_output
-  sudo sed -i '$a $PRIVATE_IP nfs-server' /etc/hosts
+  sudo sed -i "$ a $PRIVATE_IP nfs-server" /etc/hosts
   mkdir /nfsshare
   chown nobody:nogroup /nfsshare
   chmod 777 /nfsshare  
