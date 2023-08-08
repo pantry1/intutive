@@ -20,21 +20,13 @@ variable "nfs_server_size" {
   default = "50"
 }
 
-variable "public_subnet_id" {
-  default = "subnet-03b362bbc29eedb1d"
-}
-
-variable "node_security_group_id" {
-  default = "sg-02e8b82aa8e5dbe10"
-}
-
 variable "db_instance_type" {
   default = "db.t3.micro"
 }
 
 variable "cluster_name" {
   type    = string
-  default = "bitbucket-cluster"
+  default = "atlassian-cluster-2"
 }
 
 variable "db_size" {
@@ -43,7 +35,7 @@ variable "db_size" {
 
 ######  USERNAME AND OTHER DETAILS
 variable "db_username" {
-  default = "foo"
+  default = "postgres"
 }
 
 variable "es_username" {
