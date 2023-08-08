@@ -5,7 +5,7 @@ metadata:
   annotations:
     "helm.sh/hook": test
     "helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
-    {{- include "confluence.podAnnotations" . | nindent 4 }}
+    {{- include "atlassian.podAnnotations" . | nindent 4 }}
   labels:
     {{- include "common.labels.commonLabels" . | nindent 4 }}
 spec:
@@ -14,7 +14,7 @@ spec:
       image: alpine
       env:
         - name: STATUS_URL
-          value: "http://{{ include "common.names.fullname" . }}:{{ .Values.confluence.service.port }}/status"
+          value: "http://{{ include "common.names.fullname" . }}:{{ .Values.atlassian.service.port }}/status"
       command:
         - /bin/sh
         - -ec

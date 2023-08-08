@@ -37,20 +37,3 @@ module "bitbucket" {
   secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
   secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
 }
-
-
-/*module "confluence" {
-  source                 = "./modules/confluence-module"
-  cluster_name           = module.eks_cluster.cluster_name
-  region                 = var.region
-  nfs_mount_path         = var.nfs_mount_path
-  private_subnets        = var.private_subnets
-  elb_type               = var.elb_type
-  cluster_ca_certificate = base64decode(module.eks_cluster.cluster_certificate_authority_data)
-  eks_endpoint           = module.eks_cluster.cluster_endpoint
-  eks_token              = data.aws_eks_cluster_auth.cluster.token
-  chart_status           = module.eks_add_ons.helm_metadata_status
-  secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
-  secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
-}
-*/

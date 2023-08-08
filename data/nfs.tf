@@ -33,7 +33,7 @@ resource "aws_security_group" "nfs-sg" {
   egress {
     from_port   = 0
     to_port     = 0
-    protocol    = "-1"
+    protocol    = -1
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
@@ -56,7 +56,7 @@ resource "local_file" "local_key_pair" {
 
 resource "aws_instance" "nfs-server" {
 
-  subnet_id                   = var.public_subnet_id
+  subnet_id                   = element(data.aws_subnets.private_subnets.ids,0)
   ami                         = data.aws_ami.debian11.image_id
   instance_type               = var.nfs_instance_type
   availability_zone           = data.aws_availability_zones.available.names[0]
@@ -87,9 +87,19 @@ resource "aws_instance" "nfs-server" {
   }
   user_data = <<-EOF
   #!/bin/bash
+  echo "sleeping for 10 seconds" >> /tmp/user_data_script_output
+  sleep 10
+  echo "Running update command" >> /tmp/user_data_script_output
+  sudo apt-get update -y 2>> /tmp/user_data_script_output
+  echo "Running upgrade command" >> /tmp/user_data_script_output
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade 2>> /tmp/user_data_script_output
+  echo "Installing NFS Server" >> /tmp/user_data_script_output
+  sudo apt-get install nfs-kernel-server -yq 2>>  /tmp/user_data_script_output
+  echo $? >> /tmp/user_data_script_output
   sudo hostnamectl set-hostname nfs-server
-  sudo apt-get update -y
-  sudo apt-get install nfs-kernel-server -y
+  PRIVATE_IP=$(ip -4 addr show ens5 | grep -oP 'inet \K[\d.]+')
+  echo $PRIVATE_IP >> /tmp/user_data_script_output
+  sudo sed -i '$a $PRIVATE_IP nfs-server' /etc/hosts
   mkdir /nfsshare
   chown nobody:nogroup /nfsshare
   chmod 777 /nfsshare  

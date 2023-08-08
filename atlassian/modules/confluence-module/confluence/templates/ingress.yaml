@@ -40,11 +40,11 @@ spec:
                 port:
                   number: {{ $.Values.synchrony.service.port }}
           {{ end }}
-          - path: {{ include "confluence.ingressPath" . }}
+          - path: {{ include "atlassian.ingressPath" . }}
             pathType: Prefix
             backend:
               service:
                 name: {{ include "common.names.fullname" . }}
                 port:
-                  number: {{ $.Values.confluence.service.port }}
+                  number: {{ $.Values.atlassian.service.port }}
 {{ end }}

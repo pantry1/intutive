@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels:
+    {{- include "common.labels.commonLabels" . | nindent 4 }}
+  annotations:
+    {{- with .Values.atlassian.service.annotations }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  type: {{ .Values.atlassian.service.type }}
+  sessionAffinity: {{ .Values.atlassian.service.sessionAffinity }}
+  {{- if .Values.atlassian.service.sessionAffinityConfig.clientIP.timeoutSeconds }}
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: {{ .Values.atlassian.service.sessionAffinityConfig.clientIP.timeoutSeconds }}
+  {{- end }}
+  {{- if and (eq .Values.atlassian.service.type "LoadBalancer") (not (empty .Values.atlassian.service.loadBalancerIP)) }}
+  loadBalancerIP: {{ .Values.atlassian.service.loadBalancerIP }}
+  {{- end }}
+  ports:
+    - port: {{ .Values.atlassian.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: {{ .Values.atlassian.ports.hazelcast }}
+      targetPort: hazelcast
+      protocol: TCP
+      name: hazelcast
+  selector:
+    {{- include "common.labels.selectorLabels" . | nindent 4 }}

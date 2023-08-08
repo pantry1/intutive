@@ -20,6 +20,10 @@ variable "nfs_server_size" {
   default = "50"
 }
 
+variable "public_subnet_id" {
+  default = "subnet-03b362bbc29eedb1d"
+}
+
 variable "db_instance_type" {
   default = "db.t3.micro"
 }

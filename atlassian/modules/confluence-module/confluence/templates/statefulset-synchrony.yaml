@@ -18,23 +18,23 @@ spec:
         {{- if .Values.synchrony.podAnnotations }}
         {{- include "synchrony.podAnnotations" . | nindent 8 }}
         {{- else }}
-        {{- include "confluence.podAnnotations" . | nindent 8 }}
+        {{- include "atlassian.podAnnotations" . | nindent 8 }}
         {{- end }}
       labels:
         {{- include "synchrony.selectorLabels" . | nindent 8 }}
-        {{- include "confluence.podLabels" . | nindent 8 }}
+        {{- include "atlassian.podLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "confluence.serviceAccountName" . }}
+      serviceAccountName: {{ include "atlassian.serviceAccountName" . }}
       terminationGracePeriodSeconds: {{ .Values.synchrony.shutdown.terminationGracePeriodSeconds }}
       {{- with .Values.synchrony.securityContext }}
       securityContext:
         {{ toYaml . | nindent 8 }}
       {{- end }}
       hostAliases:
-        {{- include "confluence.additionalHosts" . | nindent 8 }}
+        {{- include "atlassian.additionalHosts" . | nindent 8 }}
       containers:
         - name: synchrony
-          image: {{ include "confluence.image" . | quote }}
+          image: {{ include "atlassian.image" . | quote }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/scripts/start-synchrony.sh"]
           volumeMounts:

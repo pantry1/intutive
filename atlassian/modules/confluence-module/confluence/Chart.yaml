@@ -19,7 +19,7 @@ keywords:
 - Confluence DC
 - Atlassian
 kubeVersion: '>=1.21.x-0'
-name: confluence
+name: atlassian
 sources:
 - https://github.com/atlassian/data-center-helm-charts
 - https://bitbucket.org/atlassian-docker/docker-atlassian-confluence-server/

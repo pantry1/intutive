@@ -1,7 +1,3 @@
-output "nfs-server-public-ip" {
-  value = aws_instance.nfs-server.public_ip
-}
-
 output "nfs-server-private-ip" {
   value = aws_instance.nfs-server.private_ip
 }

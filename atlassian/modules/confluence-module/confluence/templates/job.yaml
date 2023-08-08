@@ -9,7 +9,7 @@ spec:
       - name: secondb
         image: bitnami/postgresql:latest
         command: ["createdb"]
-        args: ["-h","{{  .Values.database.hostname }}", "-U", "$(POSTGRES_USERNAME)", "confluence" ]
+        args: ["-h","{{  .Values.database.hostname }}", "-U", "$(POSTGRES_USERNAME)", "atlassian" ]
         env:
         - name: PGPASSWORD
           valueFrom:

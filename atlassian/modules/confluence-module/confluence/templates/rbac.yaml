@@ -1,4 +1,4 @@
-{{- if and (.Values.confluence.clustering.enabled) (or .Values.serviceAccount.clusterRole.create .Values.serviceAccount.role.create) -}}
+{{- if and (.Values.atlassian.clustering.enabled) (or .Values.serviceAccount.clusterRole.create .Values.serviceAccount.role.create) -}}
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if .Values.serviceAccount.clusterRole.create }}
 kind: ClusterRole
@@ -7,7 +7,7 @@ kind: Role
 {{- end }}
 metadata:
 {{- if .Values.serviceAccount.clusterRole.create }}
-  name: {{ template "confluence.clusterRoleName" . }}
+  name: {{ template "atlassian.clusterRoleName" . }}
 {{- else }}
   name: {{ include "common.names.fullname" . }}
 {{- end }}
@@ -27,7 +27,7 @@ rules:
       - list
 {{- end }}
 ---
-{{- if and (.Values.confluence.clustering.enabled) (or .Values.serviceAccount.clusterRoleBinding.create .Values.serviceAccount.roleBinding.create) -}}
+{{- if and (.Values.atlassian.clustering.enabled) (or .Values.serviceAccount.clusterRoleBinding.create .Values.serviceAccount.roleBinding.create) -}}
 apiVersion: rbac.authorization.k8s.io/v1
 {{- if .Values.serviceAccount.clusterRoleBinding.create }}
 kind: ClusterRoleBinding
@@ -36,7 +36,7 @@ kind: RoleBinding
 {{- end }}
 metadata:
 {{- if .Values.serviceAccount.clusterRoleBinding.create }}
-  name: {{ include "confluence.clusterRoleBindingName" . }}
+  name: {{ include "atlassian.clusterRoleBindingName" . }}
 {{- else }}
   name: {{ include "common.names.fullname" . }}
 {{- end }}
@@ -49,9 +49,9 @@ roleRef:
 {{- else }}
   kind: Role
 {{- end }}
-  name: {{ include "confluence.clusterRoleName" . }}
+  name: {{ include "atlassian.clusterRoleName" . }}
 subjects:
   - kind: ServiceAccount
-    name: {{ include "confluence.serviceAccountName" . }}
+    name: {{ include "atlassian.serviceAccountName" . }}
     namespace: {{ .Release.Namespace }}
 {{ end }}

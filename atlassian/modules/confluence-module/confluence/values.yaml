@@ -35,7 +35,7 @@ image:
   # -- The Confluence Docker image to use
   # https://hub.docker.com/r/atlassian/confluence-server
   #
-  repository: atlassian/confluence
+  repository: atlassian/atlassian
 
   # -- Image pull policy
   #
@@ -123,7 +123,7 @@ serviceAccount:
   #
   eksIrsa:
 
-    # Defining a full arn of AWS role to assume will automatically annotate confluence,
+    # Defining a full arn of AWS role to assume will automatically annotate atlassian,
     # e.g. `eks.amazonaws.com/role-arn: arn:aws:iam::123456789012:role/S3Access`.
     # "-Daws.webIdentityTokenFile=/var/run/secrets/eks.amazonaws.com/serviceaccount/token" will be automatically added to Confluence JVM arguments
     roleArn:
@@ -242,7 +242,7 @@ volumes:
     # -- Specifies the path in the Confluence container to which the local-home volume will be
     # mounted.
     #
-    mountPath: "/var/atlassian/application-data/confluence"
+    mountPath: "/var/atlassian/application-data/atlassian"
 
   # A volume for 'shared-home' is required by Confluence to effectively operate in multi-node
   # environment
@@ -398,11 +398,11 @@ volumes:
     # -- Specifies the path in the Synchrony container to which the synchrony-home volume will be
     # mounted.
     #
-    mountPath: "/var/atlassian/application-data/confluence"
+    mountPath: "/var/atlassian/application-data/atlassian"
 
   # -- Defines additional volumes that should be applied to all Confluence pods.
   # Note that this will not create any corresponding volume mounts;
-  # those needs to be defined in confluence.additionalVolumeMounts
+  # those needs to be defined in atlassian.additionalVolumeMounts
   #
   additional: []
 
@@ -480,9 +480,9 @@ ingress:
   #
   host:
 
-  # -- The base path for the Ingress Resource. For example '/confluence'. Based on a
+  # -- The base path for the Ingress Resource. For example '/atlassian'. Based on a
   # 'ingress.host' value of 'company.k8s.com' this would result in a URL of
-  # 'company.k8s.com/confluence'. Default value is 'confluence.service.contextPath'
+  # 'company.k8s.com/atlassian'. Default value is 'atlassian.service.contextPath'
   path:
 
   # -- The custom annotations that should be applied to the Ingress Resource
@@ -645,7 +645,7 @@ confluence:
     # -- The path within the Confluence container where the local-home volume should be
     # mounted in order to capture access logs.
     #
-    mountPath: "/opt/atlassian/confluence/logs"
+    mountPath: "/opt/atlassian/atlassian/logs"
 
     # -- The subdirectory within the local-home volume where access logs should be
     # stored.
@@ -747,7 +747,7 @@ confluence:
 
   # -- The Docker entrypoint.py generates application configuration on
   # first start; not all of these files are regenerated on subsequent starts.
-  # By default, confluence.cfg.xml is generated only once. Set `forceConfigUpdate` to true
+  # By default, atlassian.cfg.xml is generated only once. Set `forceConfigUpdate` to true
   # to change this behavior.
   #
   forceConfigUpdate: false
@@ -807,7 +807,7 @@ confluence:
 
   # -- Defines additional volumeClaimTemplates that should be applied to the Confluence pod.
   # Note that this will not create any corresponding volume mounts;
-  # those needs to be defined in confluence.additionalVolumeMounts
+  # those needs to be defined in atlassian.additionalVolumeMounts
   #
   additionalVolumeClaimTemplates: []
   #  - name: myadditionalvolumeclaim
@@ -825,7 +825,7 @@ confluence:
   #   whenUnsatisfiable: ScheduleAnyway
   #   labelSelector:
   #     matchLabels:
-  #       app.kubernetes.io/name: confluence
+  #       app.kubernetes.io/name: atlassian
 
   # Debugging
   #
@@ -1079,7 +1079,7 @@ synchrony:
   #   whenUnsatisfiable: ScheduleAnyway
   #   labelSelector:
   #     matchLabels:
-  #       app.kubernetes.io/name: confluence-synchrony
+  #       app.kubernetes.io/name: atlassian-synchrony
 
 # Fluentd configuration
 #
@@ -1127,9 +1127,9 @@ fluentd:
   #     @type multiline
   #     format_firstline /\d{4}-\d{1,2}-\d{1,2}/
   #     </parse>
-  #     path /opt/atlassian/confluence/logs/access_log.*
+  #     path /opt/atlassian/atlassian/logs/access_log.*
   #     pos_file /tmp/confluencelog.pos
-  #     tag confluence-access-logs
+  #     tag atlassian-access-logs
   #   </source>
 
   # -- The port on which the Fluentd sidecar will listen
@@ -1150,13 +1150,13 @@ fluentd:
 
     # -- The prefix of the Elasticsearch index name that will be used
     #
-    indexNamePrefix: confluence
+    indexNamePrefix: atlassian
 
   # -- Specify custom volumes to be added to Fluentd container (e.g. more log sources)
   #
   extraVolumes: []
   # - name: local-home
-  #   mountPath: /opt/atlassian/confluence/logs
+  #   mountPath: /opt/atlassian/atlassian/logs
   #   subPath: log
   #   readOnly: true
 
