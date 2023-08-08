@@ -1,5 +1,5 @@
 resource "helm_release" "bitbucket-data-center" {
-  depends_on       = [helm_release.eck-operators,kubectl_manifest.secret-store]
+  depends_on       = [helm_release.eck-operators, kubectl_manifest.secret-store]
   name             = "bitbucket"
   chart            = "${path.module}/bitbucket"
   version          = "1.12.0"
@@ -133,9 +133,19 @@ resource "helm_release" "bitbucket-data-center" {
     value = "[{\"HTTP\": 80}]"
     type  = "string"
   }
+  #  set {
+  #    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/listen-ports"
+  #    value = "[{\"HTTPS\": 443}]"
+  #    type  = "string"
+  #  }
+  #  set {
+  #    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/certificate-arn"
+  #    value = var.certificateARN
+  #    type  = "string"
+  #  }
   set {
     name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/subnets"
-    value = var.private_subnets    
+    value = var.private_subnets
   }
   set {
     name  = "secretStoreName"
