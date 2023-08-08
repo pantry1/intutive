@@ -36,4 +36,5 @@ module "bitbucket" {
   chart_status           = module.eks_add_ons.helm_metadata_status
   secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
   secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
+  certificateARN         = var.certificateARN
 }
