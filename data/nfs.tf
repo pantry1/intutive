@@ -77,6 +77,11 @@ resource "aws_instance" "nfs-server" {
     volume_type = "gp2"
     volume_size = var.nfs_server_size
     encrypted   = true
+    tags = {
+      name                = "nfs-server"
+      cluster_name        = var.cluster_name
+      terraform_workspace = terraform.workspace
+    }
   }
 
   lifecycle {
