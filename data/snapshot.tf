@@ -73,7 +73,7 @@ resource "aws_dlm_lifecycle_policy" "test_lifecyclerole" {
         SnapshotCreator = "DLM"
       }
 
-      copy_tags = false
+      copy_tags = true
     }
 
 
