@@ -9,3 +9,6 @@ variable "cluster_ca_certificate" {
 variable "eks_token" {
   type = string
 }
+
+variable "private_subnets" {
+}

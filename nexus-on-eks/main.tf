@@ -27,4 +27,5 @@ module "nexus" {
   cluster_ca_certificate = base64decode(module.eks_cluster.cluster_certificate_authority_data)
   eks_endpoint           = module.eks_cluster.cluster_endpoint
   eks_token              = data.aws_eks_cluster_auth.cluster.token
+  private_subnets        = var.private_subnets
 }
