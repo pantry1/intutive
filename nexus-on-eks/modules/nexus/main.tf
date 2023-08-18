@@ -14,4 +14,16 @@ resource "helm_release" "nexus" {
     name  = "service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-subnets"
     value = var.private_subnets
   }
+  set {
+    name  = "persistence.enabled"
+    value = true
+  }
+  set {
+    name  = "persistence.size"
+    value = "8Gi"
+  }
+  set {
+    name  = "persistence.storageClass"
+    value = "gp2"
+  }
 }
