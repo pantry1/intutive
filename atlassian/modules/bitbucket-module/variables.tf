@@ -1,10 +1,6 @@
-variable "cluster_name" {
-  type = string
-}
+variable "cluster_name" {}
 
-variable "region" {
-  type = string
-}
+variable "region" {}
 
 variable "rds_driver" {
   default = "org.postgresql.Driver"
@@ -18,33 +14,21 @@ variable "bitbucket_pods_count" {
   default = 1
 }
 
-variable "private_subnets" {
-}
+variable "private_subnets" {}
 
-variable "elb_type" {
-}
+variable "elb_type" {}
 
-variable "eks_endpoint" {
-  type = string
-}
+variable "eks_endpoint" {}
 
-variable "cluster_ca_certificate" {
-  type = string
-}
+variable "cluster_ca_certificate" {}
 
-variable "eks_token" {
-  type = string
-}
-variable "chart_status" {
+variable "eks_token" {}
+variable "chart_status" {}
 
-}
+variable "secret_store_name" {}
 
-variable "secret_store_name" {
-  type = string
-}
+variable "secret_store_arn" {}
 
-variable "secret_store_arn" {
-}
+variable "certificateARN" {}
 
-variable "certificateARN" {
-}
+variable "hosted_zone_id" {}
