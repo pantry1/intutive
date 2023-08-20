@@ -31,3 +31,6 @@ variable "secret_store_name" {
 variable "secret_store_arn" {
 
 }
+variable "efs_id" {
+  type = string
+}
