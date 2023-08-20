@@ -45,31 +45,17 @@ resource "helm_release" "bitbucket-data-center" {
     type  = "string"
   }
   set {
-    name  = "volumes.sharedHome.persistentVolume.create"
-    value = true
-  }
-  set {
-    name  = "volumes.sharedHome.persistentVolume.nfs.server"
-    value = data.aws_instance.nfs_server.private_ip
-  }
-  set {
-    name  = "volumes.sharedHome.persistentVolume.nfs.path"
-    value = var.nfs_mount_path
-    type  = "string"
-  }
-  set {
     name  = "volumes.sharedHome.persistentVolumeClaim.create"
     value = true
   }
   set {
     name  = "volumes.sharedHome.persistentVolumeClaim.storageClassName"
-    value = ""
+    value = "aws-efs"
   }
   set {
     name  = "ingress.create"
     value = true
   }
-
   set {
     name  = "bitbucket.sysadminCredentials.secretName"
     value = "bitbucket-auth"
@@ -131,6 +117,11 @@ resource "helm_release" "bitbucket-data-center" {
   set {
     name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/listen-ports"
     value = "[{\"HTTP\": 80}]"
+    type  = "string"
+  }
+  set {
+    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/load-balancer-name"
+    value = "bitbucket-alb"
     type  = "string"
   }
   #  set {
