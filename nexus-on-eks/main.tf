@@ -18,8 +18,9 @@ module "eks_add_ons" {
   eks_token              = data.aws_eks_cluster_auth.cluster.token
   oidc_provider_arn      = module.eks_cluster.oidc_provider_arn
   vpc_id                 = var.vpc_id
-  secret_store_name      = aws_secretsmanager_secret.store.name
-  secret_store_arn       = aws_secretsmanager_secret.store.arn
+  secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
+  secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
+  efs_id                 = var.efs_id
 }
 
 module "nexus" {
@@ -28,4 +29,5 @@ module "nexus" {
   eks_endpoint           = module.eks_cluster.cluster_endpoint
   eks_token              = data.aws_eks_cluster_auth.cluster.token
   private_subnets        = var.private_subnets
+  elb_scheme             = var.elb_scheme
 }
