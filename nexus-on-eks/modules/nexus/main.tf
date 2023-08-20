@@ -8,15 +8,35 @@ resource "helm_release" "nexus" {
 
   set {
     name  = "service.type"
-    value = "LoadBalancer"
+    value = "NodePort"
   }
   set {
-    name  = "service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-subnets"
+    name  = "ingress.enabled"
+    value = true
+  }
+  set {
+    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/subnets"
     value = var.private_subnets
+  }
+  set {
+    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme"
+    value = var.elb_scheme
+  }
+  set {
+    name  = "ingress.annotations.alb\\.ingress\\.kubernetes\\.io/load-balancer-name"
+    value = "nexus-load-balancer"
+  }
+  set {
+    name  = "ingress.ingressClassName"
+    value = "alb"
   }
   set {
     name  = "persistence.enabled"
     value = true
+  }
+  set {
+    name  = "ingress.hosts[0]"
+    value = "nexus.internal.test.com"
   }
   set {
     name  = "persistence.size"
@@ -24,6 +44,6 @@ resource "helm_release" "nexus" {
   }
   set {
     name  = "persistence.storageClass"
-    value = "gp2"
+    value = "aws-efs"
   }
 }
