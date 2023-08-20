@@ -1,6 +1,6 @@
 {{- if .Values.volumes.sharedHome.persistentVolume.create }}
 apiVersion: v1
-kind: PersistentVolume
+
 metadata:
   name: {{ include "bitbucket.volume.sharedHome.name" . }}
   labels:
@@ -18,14 +18,10 @@ spec:
     {{- toYaml . | nindent 4 }}
   {{- else }}
     - rw
-    - nfsvers=3
-    # - lookupcache=pos
-    # - noatime
-    # - intr
-    # - rsize=32768
-    # - wsize=32768
-    # - _netdev
-    # - hard    
+    - lookupcache=pos
+    - noatime
+    - intr
+    - _netdev
   {{- end }}
   {{- with .Values.volumes.sharedHome.persistentVolume.nfs }}
   nfs:
