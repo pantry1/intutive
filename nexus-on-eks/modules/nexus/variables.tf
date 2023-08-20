@@ -11,4 +11,9 @@ variable "eks_token" {
 }
 
 variable "private_subnets" {
+  type = string
+}
+
+variable "elb_scheme" {
+  type = string
 }

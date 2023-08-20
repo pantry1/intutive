@@ -29,5 +29,8 @@ variable "secret_store_name" {
   type = string
 }
 variable "secret_store_arn" {
-
+  type = string
+}
+variable "efs_id" {
+  type = string
 }

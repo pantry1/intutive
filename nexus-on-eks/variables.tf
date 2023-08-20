@@ -30,7 +30,7 @@ variable "private_subnets" {
 
 variable "cluster_name" {
   type    = string
-  default = "nexus-cluster-1"
+  default = "nexus-cluster-3"
 }
 
 variable "region" {
@@ -38,3 +38,12 @@ variable "region" {
   default = "ap-south-1"
 }
 
+variable "elb_scheme" {
+  type    = string
+  default = "internal"
+}
+
+variable "efs_id" {
+  type    = string
+  default = "fs-01f132c908a9c066e"
+}
