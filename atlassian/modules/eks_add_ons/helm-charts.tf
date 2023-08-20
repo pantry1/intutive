@@ -95,3 +95,37 @@ resource "helm_release" "loadbalancer_controller" {
   }
 
 }
+
+resource "helm_release" "efs-provisioner" {
+  name             = "efs-provisioner"
+  chart            = "${path.module}/efs-provisioner"
+  version          = "0.14.0"
+  namespace        = "efs-provisioner"
+  create_namespace = true
+
+  set {
+    name  = "efsProvisioner.efsFileSystemId"
+    value = var.efs_id
+  }
+  set {
+    name  = "serviceAccount.name"
+    value = "efs-provisioner"
+  }
+  set {
+    name  = "serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
+    value = module.efs_csi_driver_role.iam_role_arn
+    type  = "string"
+  }
+  set {
+    name  = "podSecurityPolicy.enabled"
+    value = false
+  }
+  set {
+    name  = "efsProvisioner.awsRegion"
+    value = "ap-south-1"
+  }
+  set {
+    name  = "efsProvisioner.storageClass.reclaimPolicy"
+    value = "Retain"
+  }
+}
