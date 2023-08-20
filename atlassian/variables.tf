@@ -38,12 +38,21 @@ variable "private_subnets" {
 
 variable "cluster_name" {
   type    = string
-  default = "atlassian-cluster-2"
+  default = "atlassian-cluster-4"
 }
 
 variable "region" {
   type    = string
   default = "ap-south-1"
+}
+variable "efs_id" {
+  type    = string
+  default = "fs-01f132c908a9c066e"
+}
+
+variable "hosted_zone_id" {
+  type    = string
+  default = "Z02258442IWESMF43UXWZ"
 }
 
 variable "bitbucket_pods_count" {
