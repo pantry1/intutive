@@ -5,7 +5,7 @@ resource "aws_secretsmanager_secret" "store" {
 
 resource "random_string" "db_password" {
   length  = 10
-  special = true
+  special = false
   upper   = false
 
 }
