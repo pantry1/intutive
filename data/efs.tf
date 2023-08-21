@@ -1,16 +1,5 @@
 data "aws_availability_zones" "available" {}
 
-data "aws_subnets" "private_subnets" {
-  filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
-  }
-  filter {
-    name   = "tag:Name"
-    values = ["*private*"]
-  }
-}
-
 resource "aws_efs_file_system" "efs-atlassian" {
   creation_token   = "efs"
   performance_mode = "generalPurpose"
