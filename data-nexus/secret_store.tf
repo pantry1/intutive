@@ -31,13 +31,12 @@ resource "aws_secretsmanager_secret_version" "store_values" {
    {
     "db_password": "${random_string.db_password.result}",
     "es_password": "${random_string.es_password.result}"
-    "bitbucket_password" : "${random_string.bitbucket_password.result}"
    }
 EOF
 }
 
 data "aws_iam_policy_document" "example" {
-  version =  "2012-10-17"
+  version = "2012-10-17"
   statement {
     effect    = "Allow"
     actions   = ["secretsmanager:GetSecretValue"]
