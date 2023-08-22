@@ -122,7 +122,7 @@ resource "helm_release" "efs-provisioner" {
   }
   set {
     name  = "efsProvisioner.awsRegion"
-    value = "ap-south-1"
+    value = var.region
   }
   set {
     name  = "efsProvisioner.storageClass.reclaimPolicy"
