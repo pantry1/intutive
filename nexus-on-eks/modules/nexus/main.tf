@@ -36,7 +36,7 @@ resource "helm_release" "nexus" {
   }
   set {
     name  = "ingress.hosts[0]"
-    value = "nexus.internal.test.com"
+    value = ""
   }
   set {
     name  = "persistence.size"
