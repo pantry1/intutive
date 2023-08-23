@@ -6,3 +6,5 @@ terraform.tfvars
 atlassian/.terraform/
 pem/*
 terraform.tfstate.d
+.DS_Store
+.terraform.lock.hcl
