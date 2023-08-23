@@ -1,4 +1,4 @@
-data "aws_lb_hosted_zone_id" "alb" {}
+data "aws_elb_hosted_zone_id" "alb" {}
 
 data "aws_elb" "bitbucket-alb" {
   name = "bitbucket-alb"
