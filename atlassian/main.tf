@@ -20,7 +20,7 @@ module "eks_add_ons" {
   vpc_id                 = var.vpc_id
   secret_store_name      = data.aws_secretsmanager_secret.secret_store.name
   secret_store_arn       = data.aws_secretsmanager_secret.secret_store.arn
-  efs_id                 = var.efs_id
+  efs_id                 = replace(data.aws_efs_file_system.fs_id.dns_name,  ".efs.${var.region}.amazonaws.com", "")
 }
 
 module "bitbucket" {
