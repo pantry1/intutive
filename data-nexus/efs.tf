@@ -17,7 +17,7 @@ resource "aws_efs_file_system" "efs-nexus" {
   throughput_mode  = "bursting"
   encrypted        = "true"
   tags = {
-    Name        = "EFS-nexus"
+    Name        = "efs-nexus"
     eks-cluster = var.cluster_name
   }
 }
