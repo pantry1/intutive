@@ -13,3 +13,10 @@ data "aws_eks_cluster_auth" "cluster" {
 data "aws_secretsmanager_secret" "secret_store" {
   name = "SecretStore-${var.cluster_name}"
 }
+
+data "aws_efs_file_system" "fs_id" {
+  tags = {
+      Name = "efs-nexus"
+      eks-cluster = var.cluster_name
+  }
+}
