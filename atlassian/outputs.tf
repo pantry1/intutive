@@ -25,3 +25,7 @@ output "node_security_group_id" {
 output "cluster_certificate_authority_data" {
   value = module.eks_cluster.cluster_certificate_authority_data
 }
+
+output "alb_dns" {
+  value = module.bitbucket.alb_dns
+}
