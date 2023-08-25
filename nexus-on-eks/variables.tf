@@ -30,7 +30,7 @@ variable "private_subnets" {
 
 variable "cluster_name" {
   type    = string
-  default = "nexus-cluster-3"
+  default = "nexus-cluster-4"
 }
 
 variable "region" {
@@ -40,10 +40,10 @@ variable "region" {
 
 variable "elb_scheme" {
   type    = string
-  default = "internal"
+  default = "internet-facing"
 }
 
-variable "efs_id" {
+variable "hosted_zone_id" {
   type    = string
-  default = "fs-01f132c908a9c066e"
+  default = "Z02258442IWESMF43UXWZ"
 }
