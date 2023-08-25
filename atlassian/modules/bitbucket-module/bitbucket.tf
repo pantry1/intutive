@@ -62,10 +62,6 @@ resource "helm_release" "bitbucket-data-center" {
     type  = "string"
   }
   set {
-    name  = "bitbucket.service.type"
-    value = "ClusterIP"
-  }
-  set {
     name  = "volumes.sharedHome.nfsPermissionFixer.enabled"
     value = true
   }
