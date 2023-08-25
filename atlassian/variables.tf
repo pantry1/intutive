@@ -18,10 +18,6 @@ variable "nodes_count" {
   default = "2"
 }
 
-variable "nfs_mount_path" {
-  default = "/nfsshare"
-}
-
 variable "elb_type" {
   default = "internet-facing" #it can be internet-facing or internal
 }
@@ -44,10 +40,6 @@ variable "cluster_name" {
 variable "region" {
   type    = string
   default = "ap-south-1"
-}
-variable "efs_id" {
-  type    = string
-  default = "fs-01f132c908a9c066e"
 }
 
 variable "hosted_zone_id" {
