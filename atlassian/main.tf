@@ -27,7 +27,6 @@ module "bitbucket" {
   source                 = "./modules/bitbucket-module"
   cluster_name           = module.eks_cluster.cluster_name
   region                 = var.region
-  nfs_mount_path         = var.nfs_mount_path
   bitbucket_pods_count   = var.bitbucket_pods_count
   private_subnets        = var.private_subnets
   elb_type               = var.elb_type
